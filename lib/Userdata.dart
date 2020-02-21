@@ -6,6 +6,7 @@ class Userdata{
   final String zipCode;
   String uid;
   String phone;
+  String imageUrl;
 
   Userdata({
     this.fname,
@@ -14,6 +15,7 @@ class Userdata{
     this.city,
     this.zipCode,
     this.phone,
-    this.uid
+    this.uid,
+    this.imageUrl
   });
 }
