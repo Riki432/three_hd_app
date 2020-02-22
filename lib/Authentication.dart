@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'Userdata.dart';
 
 class EmailAuth{
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   Future<FirebaseUser> signUpWithEmail(String email, String password) async {
     try{
     AuthResult authResult = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -21,7 +21,7 @@ class EmailAuth{
     
   }
 
-  Future<FirebaseUser> signInWithEmail(String email, String password) async{
+  static Future<FirebaseUser> signInWithEmail(String email, String password) async{
     try{
     AuthResult authResult = await _firebaseAuth.signInWithEmailAndPassword(
       email: email.trim(),
@@ -38,7 +38,7 @@ class EmailAuth{
   }
 
 
-  Future<bool> sendData(Userdata data) async {
+  static Future<bool> sendData(Userdata data) async {
     await Firestore.instance.collection("Userdata")
       .document()
         .setData({
@@ -76,3 +76,12 @@ class EmailAuth{
   }
 
 }
+
+
+class GoogleSignIn
+{
+  
+}
+
+
+
