@@ -76,3 +76,12 @@ class EmailAuth{
   }
 
 }
+
+
+class GoogleSignIn
+{
+  
+}
+
+
+
