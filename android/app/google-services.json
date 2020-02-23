@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "354936179127",
+    "firebase_url": "https://three-hd-app.firebaseio.com",
+    "project_id": "three-hd-app",
+    "storage_bucket": "three-hd-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354936179127:android:353ba84611afaa24cd8032",
+        "android_client_info": {
+          "package_name": "com.threehd.internship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354936179127-tsolu15gk5o6ugkpdsprfkfm8de26i2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.threehd.internship",
+            "certificate_hash": "80b1a9de596b595e630720798d809c78e5b60e4a"
+          }
+        },
+        {
+          "client_id": "354936179127-hmn3ve6t95vq5t4plohut0f0qtjh6v13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhQjilE4pqfL-3SCNQilk4rkpiyRAB5YU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354936179127-hmn3ve6t95vq5t4plohut0f0qtjh6v13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

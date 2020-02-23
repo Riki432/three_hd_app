@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'Userdata.dart';
 
 class EmailAuth{
@@ -36,32 +36,7 @@ class EmailAuth{
     //GetIt.I.registerSingleton(user);
     return null;
   }
-
-
-  static Future<bool> sendData(Userdata data) async {
-    await Firestore.instance.collection("Userdata")
-      .document()
-        .setData({
-          "FirstName" : data.fname,
-          "LastName" : data.lname,
-          "Email" : data.email,
-          "City" : data.city,
-          "Phone" : data.phone,
-          "ZipCode" : data.zipCode
-        }).catchError((err){
-          return false;
-        });
-    return true;
-  }
-
-
-  Future<Userdata> getData(String uid) async {
-    DocumentSnapshot document = await Firestore.instance.collection("Userdata").document(uid).get();
-    Userdata data = document.data as Userdata;
-    return data;
-  }
-
-  
+    
   Future<bool> forgotPassword({@required String email}) async {
     FirebaseAuth.instance
       .sendPasswordResetEmail(email: email)
@@ -80,7 +55,28 @@ class EmailAuth{
 
 class GoogleSignIn
 {
-  
+    Future<Userdata> signIn() async{
+      final _signIn = GoogleSignIn();
+      await _signIn.signIn();
+      final currUser = await FirebaseAuth.instance.currentUser();
+      if (await Userdata.docExists(currUser.uid)){
+        return Userdata.getDataFromDB(currUser.uid);
+      }
+      else{
+        Userdata userData = Userdata(
+          email: currUser.email, 
+          name: currUser.displayName, 
+          uid: currUser.uid,
+          phone: currUser.phoneNumber,
+          imageUrl: currUser.photoUrl
+        );
+        userData.sendUserDataToDB();
+        return userData;
+      }
+
+    }
+
+
 }
 
 
