@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:three_hd_app/Homepage.dart';
 import 'package:three_hd_app/RegistrationPage.dart';
 
+import 'HomePage.dart';
 import 'LoginPage.dart';
 import 'Routes.dart';
 
@@ -17,12 +17,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
-      initialRoute: Routes.home,
+      initialRoute: Routes.login,
       routes: <String, WidgetBuilder>{
         Routes.login : (_) => LoginPage(),
         Routes.register : (_) => RegistrationPage(),
         Routes.home : (_) => HomePage(userData: null,),
-        
       },
     );
   }

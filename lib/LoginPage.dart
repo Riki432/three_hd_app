@@ -1,8 +1,8 @@
 import 'dart:ui';
-
-import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
+
+import 'Routes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,10 +23,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          // borderRadius: BorderRadius.circular(10.0),
-          // color: Colors.limeAccent,
-        ),
         child: Column(
           children: <Widget>[
               Container(
@@ -145,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     ),
                                 onPressed: (){
-                                  print("I want to register");
+                                  Navigator.pushNamed(context, Routes.register);
                                 },
                               )
                             ],

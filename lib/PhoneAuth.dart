@@ -1,5 +1,7 @@
-import 'package:firebase_tutorials/otp_screen.dart';
+// import 'package:firebase_tutorials/otp_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'OTPScreen.dart';
 
 class PhoneLogin extends StatefulWidget {
   PhoneLogin({Key key}) : super(key: key);

@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Userdata{
   final String name;
@@ -9,7 +14,7 @@ class Userdata{
   final String uid;
   String phone;
   String imageUrl;
-
+  Image image;
   
 
   Userdata({
@@ -19,7 +24,8 @@ class Userdata{
     this.zipCode,
     this.phone,
     @required this.uid,
-    this.imageUrl
+    this.imageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    this.image,
   });
 
 
@@ -53,4 +59,22 @@ class Userdata{
       else return true;
     }
 
+  static Future<File> getImage() async {
+    final file = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80
+    );
+    return file;
   }
+
+  static Future<String> uploadImage(File img, String uid) async {
+      /// Returns the url of the file uploaded 
+      final StorageReference ref = FirebaseStorage().ref().child("Profiles/$uid");
+      final StorageUploadTask task = ref.putFile(img);
+      // Cancel your subscription when done.
+      final downloadurl = await task.onComplete;
+      final String url = (await downloadurl.ref.getDownloadURL());
+      return url;
+    }
+  }
+

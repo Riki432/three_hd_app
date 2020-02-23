@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:three_hd_app/Authentication.dart';
+import 'Userdata.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -6,13 +11,19 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController rePasswordController = TextEditingController();
+  File profileImage;
+  bool userVerified = false;
+
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    // );
         return Scaffold(
       appBar: AppBar(
-        title: Text("Firebase Authentication"),
+        title: Text("Register"),
       ),
       body: Center(
           child: Column(
@@ -25,10 +36,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
               SizedBox(
                 height: 20.0,
               ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    profileImage = await Userdata.getImage();
+                  },
+                    child: Container(
+                    height: 200.0,
+                    width: 200.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: Image.asset("assets/userProfile.png").image
+                      )
+                    ),
+                  ),
+                ),
+              ),
               TextField(
                 keyboardType: TextInputType.text,
                 textAlign: TextAlign.left,
-                onChanged: (value) {},
+                controller: nameController,
                 decoration: InputDecoration(
                     hintText: "Enter your Name:",
                     border: OutlineInputBorder(
@@ -40,7 +68,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.left,
-                onChanged: (value) {},
+                controller: emailController,
                 decoration: InputDecoration(
                     hintText: "Enter your Email",
                     border: OutlineInputBorder(
@@ -52,7 +80,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextField(
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.left,
-                onChanged: (value) {},
+                controller: phoneController,
                 decoration: InputDecoration(
                     hintText: "Enter your Mobile No.",
                     border: OutlineInputBorder(
@@ -64,7 +92,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.left,
-                onChanged: (value) {},
+                controller: passwordController,
                 decoration: InputDecoration(
                     hintText: "Enter your Password",
                     border: OutlineInputBorder(
@@ -76,7 +104,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.left,
-                onChanged: (value) {},
+                controller: rePasswordController,
                 decoration: InputDecoration(
                     hintText: "Re-Enter your Password",
                     border: OutlineInputBorder(
@@ -90,7 +118,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 color: Colors.lightBlue,
                 borderRadius: BorderRadius.circular(32.0),
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    FirebaseUser user = await EmailAuth.signUpWithEmail(emailController.text, passwordController.text);
+
+                    
+  
+                    String url;
+                    if(profileImage == null){
+                      url = await Userdata.uploadImage(profileImage, user.uid);
+                    }
+                    
+                    final data = Userdata(
+                      name: nameController.text,
+                      email: emailController.text, 
+                      uid: user.uid,
+                      imageUrl: url,
+                    );
+
+
                   },
                   minWidth: 200.0,
                   height: 45.0,

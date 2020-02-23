@@ -6,7 +6,7 @@ import 'Userdata.dart';
 
 class EmailAuth{
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  Future<FirebaseUser> signUpWithEmail(String email, String password) async {
+  static Future<FirebaseUser> signUpWithEmail(String email, String password) async {
     try{
     AuthResult authResult = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email.trim(),
@@ -20,6 +20,26 @@ class EmailAuth{
     return null;
     
   }
+
+  static void resetPassword(@required String email) 
+  {
+    /// Returns two errors
+    /// ERROR_USER_NOT_FOUND
+    /// ERROR_INVALID_EMAIL
+    /// Make sure the second one doesn't happen
+    /// Put a catch block for the first one.
+      _firebaseAuth.sendPasswordResetEmail(
+        email: email
+      );    
+  }
+
+  // static void verifyEmail()
+  // {
+  //   try{
+  //     _firebaseAuth.
+  //   }
+  // }
+
 
   static Future<FirebaseUser> signInWithEmail(String email, String password) async{
     try{
