@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         Routes.login : (_) => LoginPage(),
         Routes.register : (_) => RegistrationPage(),
-        Routes.home : (_) => HomePage(userData: null,),
       },
     );
   }

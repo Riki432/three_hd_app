@@ -21,7 +21,7 @@ class EmailAuth{
     
   }
 
-  static void resetPassword(@required String email) 
+  static void resetPassword(String email) 
   {
     /// Returns two errors
     /// ERROR_USER_NOT_FOUND
@@ -33,12 +33,11 @@ class EmailAuth{
       );    
   }
 
-  // static void verifyEmail()
-  // {
-  //   try{
-  //     _firebaseAuth.
-  //   }
-  // }
+  static Future<bool> verifyEmail(FirebaseUser user) async { 
+      user = await FirebaseAuth.instance.currentUser();
+      print("${user.email} ${user.isEmailVerified}");
+      return user.isEmailVerified;
+  }
 
 
   static Future<FirebaseUser> signInWithEmail(String email, String password) async{

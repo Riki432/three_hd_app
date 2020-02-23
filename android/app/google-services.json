@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:354936179127:android:353ba84611afaa24cd8032",
         "android_client_info": {
-          "package_name": "com.threehd.internship"
+          "package_name": "com.example.three_hd_app"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "354936179127-tsolu15gk5o6ugkpdsprfkfm8de26i2k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.threehd.internship",
+	   "package_name" : "com.example.three_hd_app",
             "certificate_hash": "80b1a9de596b595e630720798d809c78e5b60e4a"
           }
         },
